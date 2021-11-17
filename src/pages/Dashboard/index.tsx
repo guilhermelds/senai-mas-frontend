@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Header } from "../../components/Header";
 import { ActivyTable } from '../../components/ActivyTable';
 import { Summary } from '../../components/Summary';
-import {NewActivyModal} from '../../components/NewActivyModal';
-import {NewCourseUnitModal} from '../../components/NewCourseUnitModal';
+import { NewActivyModal } from '../../components/NewActivyModal';
+import { NewCourseUnitModal } from '../../components/NewCourseUnitModal';
 
-import {Container} from './styles'
+import { Container } from './styles'
 
 export function Dashboard() {
 
@@ -13,38 +13,44 @@ export function Dashboard() {
     const [isNewCourseUnitModalOpen, setIsNewCourseUnitModalOpen] = useState(false)
 
 
-    function handleOpenActivyModal(){
+    function handleOpenActivyModal() {
         setIsNewActivyModalOpen(true);
     }
 
-    function handleCloseActivyModal(){
+    function handleCloseActivyModal() {
         setIsNewActivyModalOpen(false);
     }
 
-    function handleOpenCourseUnitModal(){
+    function handleOpenCourseUnitModal() {
         setIsNewCourseUnitModalOpen(true);
     }
 
-    function handleCloseCourseUnitModal(){
+    function handleCloseCourseUnitModal() {
         setIsNewCourseUnitModalOpen(false);
     }
 
+    // const Contexto = createContext({
+    //     atualiza: 0,
+    //     setAtualiza: () => { }
+    // });
+    // const [atualiza, setAtualiza] = useState(0);
+    // const value = {atualiza, setAtualiza};
 
     return (
         <>
-            <Header 
-                onOpenNewActivyModal={handleOpenActivyModal} 
+            <Header
+                onOpenNewActivyModal={handleOpenActivyModal}
                 onOpenNewCourseUnitModal={handleOpenCourseUnitModal}
             />
             <Container>
                 <Summary />
                 <ActivyTable />
             </Container>
-            <NewActivyModal 
+            <NewActivyModal
                 isOpen={isNewActivyModalOpen}
                 onRequestClose={handleCloseActivyModal}
             />
-            <NewCourseUnitModal 
+            <NewCourseUnitModal
                 isOpen={isNewCourseUnitModalOpen}
                 onRequestClose={handleCloseCourseUnitModal}
             />

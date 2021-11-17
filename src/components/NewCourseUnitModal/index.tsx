@@ -1,6 +1,5 @@
-import React from 'react';
 import Modal from 'react-modal';
-import {FiX} from 'react-icons/fi';
+import { FiX } from 'react-icons/fi';
 import { useForm } from 'react-hook-form'
 import { Container, Error } from './styles'
 import api from '../../services/api';
@@ -15,14 +14,15 @@ interface NewCourseUnitModalData {
     description: string;
 }
 
-export function NewCourseUnitModal({isOpen, onRequestClose}:NewCourseUnitModalProps) {
+export function NewCourseUnitModal({ isOpen, onRequestClose }: NewCourseUnitModalProps) {
 
-    const { register, handleSubmit, formState: {errors} } = useForm<NewCourseUnitModalData>();
-    
+    const { register, handleSubmit, formState: { errors } } = useForm<NewCourseUnitModalData>();
+
     const onSubmit = handleSubmit(data => api.post('/courseunit', data)
         .then(onRequestClose));
 
-    return(
+
+    return (
         <Modal
             isOpen={isOpen}
             onRequestClose={onRequestClose}
@@ -36,16 +36,16 @@ export function NewCourseUnitModal({isOpen, onRequestClose}:NewCourseUnitModalPr
                     onClick={onRequestClose}
                     className="react-modal-close"
                 >
-                    <FiX size={20}/>
+                    <FiX size={20} />
                 </button>
                 <form onSubmit={onSubmit}>
-                    <input 
+                    <input
                         type="text"
                         placeholder="Nome"
                         {...register("name")}
                     />
                     {errors.name && <Error>O prenchimento do campo é obrigatório</Error>}
-                    <input 
+                    <input
                         type="text"
                         placeholder="Descrição"
                         {...register("description")}
@@ -57,6 +57,6 @@ export function NewCourseUnitModal({isOpen, onRequestClose}:NewCourseUnitModalPr
                 </form>
             </Container>
         </Modal>
-        
+
     )
 }
