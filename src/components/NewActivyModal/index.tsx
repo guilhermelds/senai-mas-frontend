@@ -30,7 +30,11 @@ export function NewActivyModal({isOpen, onRequestClose}:NewActivyModalProps) {
 
     useEffect(() => {
         api.get('/courseunit')
-            .then(response => setCourseUnits(response.data))
+            .then(response => {
+                setCourseUnits(response.data)
+
+
+            })
     },[])
 
     const { register, handleSubmit, formState: {errors} } = useForm<NewActivyModalData>();
